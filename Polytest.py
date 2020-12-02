@@ -1,12 +1,11 @@
-import Term, Node
+from Term import Term
+from Node import Node
+import Polynomial
 
 def main():
     file1 = input("Enter the name of the polynomial file => ")
-    with open(file1, "r") as input1:
-        for line in input1:
-            coeff, degree = (int(num) for num in line.split(" "))
-            term = Term.Term(coeff, degree)
-            print(term.toString())
+    poly = Polynomial.read(file1)
+    print("\n" + Polynomial.toString(poly), end = "\n")
 
 if __name__ == '__main__':
     main()
