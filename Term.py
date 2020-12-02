@@ -1,12 +1,9 @@
-#from typing import TypeVar, Generic
 #
 #   This class implements a term of a polynomial
 #
 #   @author runb-cs112 (in Java)
 #   @translator Brenton Bongcaron (in Python)
 #
-
-#T = TypeVar('T')
 
 class Term:
     def __init__(self, coeff, degree):
