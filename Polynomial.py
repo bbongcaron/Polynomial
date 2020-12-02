@@ -49,9 +49,10 @@ def read(in_file_name):
 #   @return A new polynomial which is the sum of the input polynomials - the returned node is the front of the result polynomial
 ##
 def add(poly1, poly2):
-    poly3 = None
-    # code here
-    return poly3
+    # POINTERS IN PYTHON TEST!!
+    poly3 = poly1
+    poly3.term.coeff = 2000
+    return poly1
 ##
 #   Returns the product of two polynomials - DOES NOT change either of the input polynomials.
 #   The returned polynomial MUST have all new nodes. In other words, none of the nodes
