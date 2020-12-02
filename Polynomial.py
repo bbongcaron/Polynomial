@@ -39,7 +39,43 @@ def read(in_file_name):
         coeff, degree = (int(num) for num in line.split(" "))
         poly = Node(coeff, degree, poly)
     return poly
-
+##
+#   Returns the sum of two polynomials - DOES NOT change either of the input polynomials.
+#   The returned polynomial MUST have all new nodes. In other words, none of the nodes
+#   of the input polynomials can be in the result.
+#
+#   @param poly1 First input polynomial (front of polynomial linked list)
+#   @param poly2 Second input polynomial (front of polynomial linked list
+#   @return A new polynomial which is the sum of the input polynomials - the returned node is the front of the result polynomial
+##
+def add(poly1, poly2):
+    poly3 = None
+    # code here
+    return poly3
+##
+#   Returns the product of two polynomials - DOES NOT change either of the input polynomials.
+#   The returned polynomial MUST have all new nodes. In other words, none of the nodes
+#   of the input polynomials can be in the result.
+#
+#   @param poly1 First input polynomial (front of polynomial linked list)
+#   @param poly2 Second input polynomial (front of polynomial linked list)
+#   @return A new polynomial which is the product of the input polynomials - the returned node is the front of the result polynomial
+##
+def mult(poly1, poly2):
+    poly3 = None
+    # code here
+    return poly3
+##
+#   Evaluates a polynomial at a given value.
+#
+#   @param poly Polynomial (front of linked list) to be evaluated
+#   @param x Value at which evaluation is to be done
+#   @return Value of polynomial p at x
+##
+def evaluate(poly, x):
+    eval = 0
+    # code here
+    return eval
 ##
 #   Returns string representation of a polynomial
 #
