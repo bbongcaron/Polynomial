@@ -25,7 +25,7 @@ def multiply():
     file2 = input("Enter the file containing the polynomial to multiply => ")
     poly2 = Polynomial.read(file2)
     print("\n" + Polynomial.toString(poly2))
-    print("Product: " + Polynomial.toString(Polynomial.multiply(poly1, poly2)))
+    print("Product: " + Polynomial.toString(Polynomial.mult(poly1, poly2)))
 
 def evaluate():
     x = float(input("Enter the evaluation point x => "))

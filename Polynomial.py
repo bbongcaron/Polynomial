@@ -54,7 +54,7 @@ def add(poly1, poly2):
     ptr1 = poly1
     ptr2 = poly2
     newNode = None
-    didFirstAddition = False
+    did_First_Addition = False
 
     while ptr1 != None or ptr2 != None:
         if ptr1 == None:
@@ -88,18 +88,19 @@ def add(poly1, poly2):
             # Terms with a 0 coefficient should be omitted
             continue
 
-        if not didFirstAddition:
+        if not did_First_Addition:
             # Initialize front to point to smallest degree term if not done already
             front = newNode
-            didFirstAddition = True
+            did_First_Addition = True
 
         if tail == None:
             # When the first result Node is created, set the tail to be that Node
             tail = newNode
-        # Append newNode to the end of front (tail)
-        tail.next = newNode
-        # Update to new tail
-        tail = tail.next
+        else:
+            # Append newNode to the end of front (tail)
+            tail.next = newNode
+            # Update to new tail
+            tail = tail.next
     return front
 ##
 #   Returns the product of two polynomials - DOES NOT change either of the input polynomials.
@@ -111,9 +112,41 @@ def add(poly1, poly2):
 #   @return A new polynomial which is the product of the input polynomials - the returned node is the front of the result polynomial
 ##
 def mult(poly1, poly2):
-    poly3 = None
+    front = None
+    tail = None
+    ptr1 = poly1
+
     # code here
-    return poly3
+    while ptr1 != None:
+        ptr2 = poly2
+        tempFront = None
+        tempTail = None
+        newNode = None
+        did_First_Distribution = False
+        while ptr2 != None:
+            if ptr1.term.degree == 0:
+                newNode = Node(ptr1.term.coeff*ptr2.term.coeff, ptr2.term.degree, None)
+            elif ptr2.term.degree == 0:
+                newNode = Node(ptr1.term.coeff*ptr2.term.coeff, ptr1.term.degree, None)
+            else:
+                newNode = Node(ptr1.term.coeff*ptr2.term.coeff, ptr1.term.degree*ptr2.term.degree, None)
+            ptr2 = ptr2.next
+
+            if not did_First_Distribution:
+                tempFront = newNode
+                did_First_Distribution = True
+
+            if tempTail == None:
+                tempTail = newNode
+            else:
+                tempTail.next = newNode
+                tempTail = tempTail.next
+        if front == None:
+            front = tempFront
+        else:
+            front = add(front, tempFront)
+        ptr1 = ptr1.next
+    return front
 ##
 #   Evaluates a polynomial at a given value.
 #
