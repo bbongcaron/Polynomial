@@ -45,7 +45,7 @@ def read(in_file_name):
 #   of the input polynomials can be in the result.
 #
 #   @param poly1 First input polynomial (front of polynomial linked list)
-#   @param poly2 Second input polynomial (front of polynomial linked list
+#   @param poly2 Second input polynomial (front of polynomial linked list)
 #   @return A new polynomial which is the sum of the input polynomials - the returned node
 #           is the front of the result polynomial
 ##
@@ -57,13 +57,13 @@ def add(poly1, poly2):
     newNode = None
     did_First_Addition = False
 
-    while ptr1 != None or ptr2 != None:
-        if ptr1 == None:
+    while ptr1 is not None or ptr2 is not None:
+        if ptr1 is None:
             # Check: No more terms are left in poly1
             # Action: Create Nodes containing the remaining Terms in poly2's linked list
             newNode = Node(ptr2.term.coeff, ptr2.term.degree, None)
             ptr2 = ptr2.next
-        elif ptr2 == None:
+        elif ptr2 is None:
             # Check: No more terms are left in poly1
             # Action: Create Nodes containing the remaining Terms in poly1's linked list
             newNode = Node(ptr1.term.coeff, ptr1.term.degree, None)
@@ -94,7 +94,7 @@ def add(poly1, poly2):
             front = newNode
             did_First_Addition = True
 
-        if tail == None:
+        if tail is None:
             # When the first result Node is created, set the tail to be that Node
             tail = newNode
         else:
@@ -114,7 +114,7 @@ def add(poly1, poly2):
 #           is the front of the result polynomial
 ##
 def mult(poly1, poly2):
-    if poly1 == None or poly2 == None:
+    if poly1 is None or poly2 is None:
         # 0 times any polynomial is 0
         return None
 
@@ -128,7 +128,7 @@ def mult(poly1, poly2):
         tempTail = None
         newNode = None
         did_First_Distribution = False
-        while ptr2 != None:
+        while ptr2 is not None:
             # Action: Multiply coefficients, add degrees
             newNode = Node(ptr1.term.coeff*ptr2.term.coeff, ptr1.term.degree + ptr2.term.degree, None)
             ptr2 = ptr2.next
@@ -138,7 +138,7 @@ def mult(poly1, poly2):
                 tempFront = newNode
                 did_First_Distribution = True
 
-            if tempTail == None:
+            if tempTail is None:
                 # When the first tempFront Node is created, set the tail to be that Node
                 tempTail = newNode
             else:
@@ -146,7 +146,7 @@ def mult(poly1, poly2):
                 tempTail.next = newNode
                 # Update linked list's new tail
                 tempTail = tempTail.next
-        if front == None:
+        if front is None:
             # Initialize front to be resulting polynomial of the first distribution
             front = tempFront
         else:
@@ -164,7 +164,7 @@ def mult(poly1, poly2):
 def evaluate(poly, x):
     eval = float(0)
     ptr = poly
-    while (ptr != None):
+    while ptr is not None:
         eval += float(ptr.term.coeff*pow(x, ptr.term.degree))
         ptr = ptr.next
     return str(eval)
@@ -175,11 +175,11 @@ def evaluate(poly, x):
 #   @return String representation, in descending order of degrees
 ##
 def toString(poly):
-    if poly == None:
+    if poly is None:
         return "0"
     returnValue = poly.term.toString()
     current = poly.next
-    while current != None:
+    while current is not None:
         returnValue = current.term.toString() + " + " + returnValue
         current = current.next
     return returnValue
