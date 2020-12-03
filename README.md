@@ -4,7 +4,8 @@ In this assignment, you will implement a polynomial and operations on it using a
 **The following methods' code was created originally by @Brenton Bongcaron:**  
    - Polynomial.add()
    - Polynomial.mult()
-   - Polynomial.evaluate()  
+   - Polynomial.evaluate()
+  
 **The remainder of the methods were given by @runb-cs112 in Java for CS112 Data Structures in Spring 2020 and translated to Python by @Brenton Bongcaron**
 
 ## Rules
