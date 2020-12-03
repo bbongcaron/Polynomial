@@ -78,7 +78,6 @@ def add(poly1, poly2):
             newNode = Node(ptr2.term.coeff, ptr2.term.degree, None)
             ptr2 = ptr2.next
         else: # ptr1.term.degree == ptr2.term.degree
-            # Check: The degrees of the terms being pointed at are equal
             # Action: Sum the coefficients of these terms and create a new Node containing a Term of the common degree & coefficient sum
             newNode = Node(ptr1.term.coeff + ptr2.term.coeff, ptr1.term.degree, None)
             ptr1 = ptr1.next
@@ -89,7 +88,7 @@ def add(poly1, poly2):
             continue
 
         if not did_First_Addition:
-            # Initialize front to point to smallest degree term if not done already
+            # Initialize front when first Node is created
             front = newNode
             did_First_Addition = True
 
@@ -97,9 +96,9 @@ def add(poly1, poly2):
             # When the first result Node is created, set the tail to be that Node
             tail = newNode
         else:
-            # Append newNode to the end of front (tail)
+            # Append newNode to the end of front linked list (tail)
             tail.next = newNode
-            # Update to new tail
+            # Update linked list's new tail
             tail = tail.next
     return front
 ##
@@ -125,25 +124,36 @@ def mult(poly1, poly2):
         did_First_Distribution = False
         while ptr2 != None:
             if ptr1.term.degree == 0:
+                # Check: poly1's ptr's term has a degree of 0
+                # Action: Just multiply coefficients, degree = the degree of poly2's ptr2 term
                 newNode = Node(ptr1.term.coeff*ptr2.term.coeff, ptr2.term.degree, None)
             elif ptr2.term.degree == 0:
+                # Check: poly2's ptr's term has a degree of 0
+                # Action: Just multiply coefficients, degree = the degree of poly1's ptr2 term
                 newNode = Node(ptr1.term.coeff*ptr2.term.coeff, ptr1.term.degree, None)
-            else:
+            else: # ptr1.term.degree != 0 and ptr2.term.degree != 0
+                # Action: Multiply both coefficients and degrees
                 newNode = Node(ptr1.term.coeff*ptr2.term.coeff, ptr1.term.degree*ptr2.term.degree, None)
             ptr2 = ptr2.next
 
             if not did_First_Distribution:
+                # Initialize tempFront when first Node is created
                 tempFront = newNode
                 did_First_Distribution = True
 
             if tempTail == None:
+                # When the first tempFront Node is created, set the tail to be that Node
                 tempTail = newNode
             else:
+                # Append newNode to the end of tempFront linked list (tail)
                 tempTail.next = newNode
+                # Update linked list's new tail
                 tempTail = tempTail.next
         if front == None:
+            # Initialize front to be resulting polynomial of the first distribution
             front = tempFront
         else:
+            # Add current resulting distribution polynomial to front
             front = add(front, tempFront)
         ptr1 = ptr1.next
     return front
