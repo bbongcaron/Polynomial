@@ -55,7 +55,6 @@ def add(poly1, poly2):
     ptr1 = poly1
     ptr2 = poly2
     newNode = None
-    did_First_Addition = False
 
     while ptr1 is not None or ptr2 is not None:
         if ptr1 is None:
@@ -85,19 +84,15 @@ def add(poly1, poly2):
             ptr1 = ptr1.next
             ptr2 = ptr2.next
 
-        if newNode.term.coeff == 0:
-            # Terms with a 0 coefficient should be omitted
-            continue
-
-        if not did_First_Addition:
-            # Initialize front when first Node is created
+        if newNode.term.coeff == 0: continue
+        # Terms with a 0 coefficient should be omitted
+        if front is None and tail is None:
+            # Check: Returned linked list is empty
+            # Action 1: Initialize front when first Node is created
             front = newNode
-            did_First_Addition = True
-
-        if tail is None:
-            # When the first result Node is created, set the tail to be that Node
+            # Action 2: When the first result Node is created, set the tail to be that Node
             tail = newNode
-        else:
+        else: # A front Node already exists
             # Append newNode to the end of front linked list (tail)
             tail.next = newNode
             # Update linked list's new tail
@@ -114,9 +109,8 @@ def add(poly1, poly2):
 #           is the front of the result polynomial
 ##
 def mult(poly1, poly2):
-    if poly1 is None or poly2 is None:
-        # 0 times any polynomial is 0
-        return None
+    if poly1 is None or poly2 is None: return None
+    # 0 times any polynomial is 0
 
     front = None
     tail = None
@@ -133,20 +127,19 @@ def mult(poly1, poly2):
             newNode = Node(ptr1.term.coeff*ptr2.term.coeff, ptr1.term.degree + ptr2.term.degree, None)
             ptr2 = ptr2.next
 
-            if not did_First_Distribution:
-                # Initialize tempFront when first Node is created
+            if tempFront is None and tempTail is None:
+                # Check: Distribution polynomial is empty
+                # Action 1: Initialize tempFront when first Node is created
                 tempFront = newNode
-                did_First_Distribution = True
-
-            if tempTail is None:
-                # When the first tempFront Node is created, set the tail to be that Node
+                # Action 2: When the first tempFront Node is created, set the tail to be that Node
                 tempTail = newNode
-            else:
-                # Append newNode to the end of tempFront linked list (tail)
+            else: # A tempFront Node already exists
+                # Action 1: Append newNode to the end of tempFront linked list (tail)
                 tempTail.next = newNode
-                # Update linked list's new tail
+                # Action 2: Update linked list's new tail
                 tempTail = tempTail.next
         if front is None:
+            # Check: Returned linked list is empty
             # Initialize front to be resulting polynomial of the first distribution
             front = tempFront
         else:
