@@ -1,13 +1,14 @@
 # Programming Assignment - Polynomial
 
-In this assignment, you will implement a polynomial and operations on it using a linked list.  
+In this assignment, you will implement a polynomial and operations on it using a linked list. 
+##
 **The following methods' code was created originally by @Brenton Bongcaron:**  
    - Polynomial.add()
    - Polynomial.mult()
    - Polynomial.evaluate()
   
 **The remainder of the methods were given by @runb-cs112 in Java for CS112 Data Structures in Spring 2020 and translated to Python by @Brenton Bongcaron**
-
+##
 ## Rules
 
 -  You will work on this assignment individually. Read the [DCS Academic Integrity Policy for Programming Assignments](http://www.cs.rutgers.edu/academics/undergraduate/academic-integrity-policy/programming-assignments) - you are responsible for abiding by the policy. In particular, note that "**All Violations of the Academic Integrity Policy will be reported by the instructor to the appropriate Dean**".
