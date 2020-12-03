@@ -80,7 +80,8 @@ def add(poly1, poly2):
             newNode = Node(ptr2.term.coeff, ptr2.term.degree, None)
             ptr2 = ptr2.next
         else: # ptr1.term.degree == ptr2.term.degree
-            # Action: Sum the coefficients of these terms and create a new Node containing a Term of the common degree & coefficient sum
+            # Action: Sum the coefficients of these terms and create a new Node containing
+            # a Term of the common degree & coefficient sum
             newNode = Node(ptr1.term.coeff + ptr2.term.coeff, ptr1.term.degree, None)
             ptr1 = ptr1.next
             ptr2 = ptr2.next
@@ -110,7 +111,8 @@ def add(poly1, poly2):
 #
 #   @param poly1 First input polynomial (front of polynomial linked list)
 #   @param poly2 Second input polynomial (front of polynomial linked list)
-#   @return A new polynomial which is the product of the input polynomials - the returned node is the front of the result polynomial
+#   @return A new polynomial which is the product of the input polynomials - the returned node
+#           is the front of the result polynomial
 ##
 def mult(poly1, poly2):
     if poly1 == None or poly2 == None:
