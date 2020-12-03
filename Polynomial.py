@@ -49,10 +49,58 @@ def read(in_file_name):
 #   @return A new polynomial which is the sum of the input polynomials - the returned node is the front of the result polynomial
 ##
 def add(poly1, poly2):
-    # POINTERS IN PYTHON TEST!!
-    poly3 = poly1
-    poly3.term.coeff = 2000
-    return poly1
+    front = None
+    tail = None
+    ptr1 = poly1
+    ptr2 = poly2
+    newNode = None
+    didFirstAddition = False
+
+    while ptr1 != None or ptr2 != None:
+        if ptr1 == None:
+            # Check: No more terms are left in poly1
+            # Action: Create Nodes containing the remaining Terms in poly2's linked list
+            newNode = Node(ptr2.term.coeff, ptr2.term.degree, None)
+            ptr2 = ptr2.next
+        elif ptr2 == None:
+            # Check: No more terms are left in poly1
+            # Action: Create Nodes containing the remaining Terms in poly1's linked list
+            newNode = Node(ptr1.term.coeff, ptr1.term.degree, None)
+            ptr1 = ptr1.next
+        elif ptr1.term.degree < ptr2.term.degree:
+            # Check: poly1's pointer is pointed at the smaller degree term
+            # Action: Create a new Node containing this poly1 Node's term
+            newNode = Node(ptr1.term.coeff, ptr1.term.degree, None)
+            ptr1 = ptr1.next
+        elif ptr1.term.degree > ptr2.term.degree:
+            # Check: poly2's pointer is pointed at the smaller degree term
+            # Action: Create a new Node containing this poly2 Node's term
+            newNode = Node(ptr2.term.coeff, ptr2.term.degree, None)
+            ptr2 = ptr2.next
+        else: # ptr1.term.degree == ptr2.term.degree
+            # Check: The degrees of the terms being pointed at are equal
+            # Action: Sum the coefficients of these terms and create a new Node containing a Term of the common degree & coefficient sum
+            newNode = Node(ptr1.term.coeff + ptr2.term.coeff, ptr1.term.degree, None)
+            ptr1 = ptr1.next
+            ptr2 = ptr2.next
+
+        if newNode.term.coeff == 0:
+            # Terms with a 0 coefficient should be omitted
+            continue
+
+        if not didFirstAddition:
+            # Initialize front to point to smallest degree term if not done already
+            front = newNode
+            didFirstAddition = True
+
+        if tail == None:
+            # When the first result Node is created, set the tail to be that Node
+            tail = newNode
+        # Append newNode to the end of front (tail)
+        tail.next = newNode
+        # Update to new tail
+        tail = tail.next
+    return front
 ##
 #   Returns the product of two polynomials - DOES NOT change either of the input polynomials.
 #   The returned polynomial MUST have all new nodes. In other words, none of the nodes
@@ -85,7 +133,7 @@ def evaluate(poly, x):
 ##
 def toString(poly):
     if poly == None:
-        return 0
+        return "0"
     returnValue = poly.term.toString()
     current = poly.next
     while current != None:
