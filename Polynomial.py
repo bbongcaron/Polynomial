@@ -8,29 +8,30 @@ from Node import Node
 #
 
 ##
-# Reads a polynomial from an input stream (file or keyboard). The storage format
-# of the polynomial is:
-# <pre>
-#     <coeff> <degree>
-#     <coeff> <degree>
-#     ...
-#     <coeff> <degree>
-# </pre>
-# with the guarantee that degrees will be in descending order. For example:
-# <pre>
-#      4 5
-#     -2 3
-#      2 1
-#      3 0
-# </pre>
-# which represents the polynomial:
-# <pre>
-#      4*x^5 - 2*x^3 + 2*x + 3
-# </pre>
+#   Reads a polynomial from an input stream (file or keyboard). The storage format
+#   of the polynomial is:
+#   <pre>
+#       <coeff> <degree>
+#        <coeff> <degree>
+#       ...
+#       <coeff> <degree>
+#   </pre>
+#   with the guarantee that degrees will be in descending order. For example:
+#   <pre>
+#        4 5
+#       -2 3
+#        2 1
+#        3 0
+#   </pre>
+#   which represents the polynomial:
+#   <pre>
+#       4*x^5 - 2*x^3 + 2*x + 3
+#   </pre>
 #
-# @param sc Scanner from which a polynomial is to be read
-# @throws IOException If there is any input error in reading the polynomial
-# @return The polynomial linked list (front node) constructed from coefficients and degrees read from scanner
+#   @param sc Scanner from which a polynomial is to be read
+#   @throws IOException If there is any input error in reading the polynomial
+#   @return The polynomial linked list (front node) constructed from coefficients and
+#           degrees read from scanner
 ##
 def read(in_file_name):
     poly = None
@@ -46,7 +47,8 @@ def read(in_file_name):
 #
 #   @param poly1 First input polynomial (front of polynomial linked list)
 #   @param poly2 Second input polynomial (front of polynomial linked list
-#   @return A new polynomial which is the sum of the input polynomials - the returned node is the front of the result polynomial
+#   @return A new polynomial which is the sum of the input polynomials - the returned node
+#           is the front of the result polynomial
 ##
 def add(poly1, poly2):
     front = None
