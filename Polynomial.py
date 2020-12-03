@@ -1,11 +1,11 @@
 from Term import Term
 from Node import Node
-#
+##
 #   This class implements evaluate, add and multiply for polynomials.
 #
 #   @author runb-cs112
 #   @translator Brenton Bongcaron
-#
+##
 
 ##
 #   Reads a polynomial from an input stream (file or keyboard). The storage format
@@ -28,8 +28,7 @@ from Node import Node
 #       4*x^5 - 2*x^3 + 2*x + 3
 #   </pre>
 #
-#   @param sc Scanner from which a polynomial is to be read
-#   @throws IOException If there is any input error in reading the polynomial
+#   @param sc File name from which a polynomial is to be read
 #   @return The polynomial linked list (front node) constructed from coefficients and
 #           degrees read from scanner
 ##
