@@ -111,11 +111,14 @@ def add(poly1, poly2):
 #   @return A new polynomial which is the product of the input polynomials - the returned node is the front of the result polynomial
 ##
 def mult(poly1, poly2):
+    if poly1 == None or poly2 == None:
+        # 0 times any polynomial is 0
+        return None
+
     front = None
     tail = None
     ptr1 = poly1
 
-    # code here
     while ptr1 != None:
         ptr2 = poly2
         tempFront = None
@@ -123,17 +126,8 @@ def mult(poly1, poly2):
         newNode = None
         did_First_Distribution = False
         while ptr2 != None:
-            if ptr1.term.degree == 0:
-                # Check: poly1's ptr's term has a degree of 0
-                # Action: Just multiply coefficients, degree = the degree of poly2's ptr2 term
-                newNode = Node(ptr1.term.coeff*ptr2.term.coeff, ptr2.term.degree, None)
-            elif ptr2.term.degree == 0:
-                # Check: poly2's ptr's term has a degree of 0
-                # Action: Just multiply coefficients, degree = the degree of poly1's ptr2 term
-                newNode = Node(ptr1.term.coeff*ptr2.term.coeff, ptr1.term.degree, None)
-            else: # ptr1.term.degree != 0 and ptr2.term.degree != 0
-                # Action: Multiply both coefficients and degrees
-                newNode = Node(ptr1.term.coeff*ptr2.term.coeff, ptr1.term.degree*ptr2.term.degree, None)
+            # Action: Multiply coefficients, add degrees
+            newNode = Node(ptr1.term.coeff*ptr2.term.coeff, ptr1.term.degree + ptr2.term.degree, None)
             ptr2 = ptr2.next
 
             if not did_First_Distribution:
@@ -165,9 +159,12 @@ def mult(poly1, poly2):
 #   @return Value of polynomial p at x
 ##
 def evaluate(poly, x):
-    eval = 0
-    # code here
-    return eval
+    eval = float(0)
+    ptr = poly
+    while (ptr != None):
+        eval += float(ptr.term.coeff*pow(x, ptr.term.degree))
+        ptr = ptr.next
+    return str(eval)
 ##
 #   Returns string representation of a polynomial
 #

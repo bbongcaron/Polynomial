@@ -7,5 +7,5 @@ import Term
 #
 class Node:
     def __init__(self, coeff, degree, next):
-        self.term = Term.Term(coeff, degree)
+        self.term = Term.Term(float(coeff), degree)
         self.next = next
