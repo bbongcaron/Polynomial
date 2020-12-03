@@ -2,7 +2,7 @@
 
 In this assignment, you will implement a polynomial and operations on it using a linked list. 
 ##
-**The following methods' code was created originally by @Brenton Bongcaron:**  
+**The following methods' code was created originally by the student @Brenton Bongcaron:**  
    - Polynomial.add()
    - Polynomial.mult()
    - Polynomial.evaluate()
